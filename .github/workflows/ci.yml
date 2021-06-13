@@ -3,6 +3,7 @@ on:
     paths:
       - 'Dockerfile'
       - 'src/**'  
+      - 'test/**'
       - '.github/**'
 
 name: Continuous integration
