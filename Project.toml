@@ -1,7 +1,7 @@
 name = "DoubleTrouble"
 uuid = "af84cb52-4d94-404a-9382-5b2f059b52be"
 authors = ["Sebastian Rollen <seb@overmu.se>"]
-version = "0.1.0"
+version = "0.1.1"
 
 [deps]
 CSV = "336ed68f-0bac-5ca0-87d4-7b16caf5d00b"
