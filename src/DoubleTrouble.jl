@@ -3,7 +3,7 @@ module DoubleTrouble
 using CSV
 using DataFrames
 using Dates
-using Impute: Impute, impute, Interpolate
+using Impute: Impute, Interpolate, impute, locf
 using JSON3
 using Optim: BFGS, Fminbox, optimize, minimizer
 using Roots: find_zero

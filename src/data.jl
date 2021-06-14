@@ -13,7 +13,13 @@ function read_adjusted_prices(file)
     end
     data.date = Date.(data.datetime)
     data = combine(groupby(data, :date)) do group
-        impute(group, Interpolate(; limit = 1))
+        mapcols(group) do col
+            if all(ismissing, col)
+                col
+            else
+                locf(impute(col, Interpolate(; limit = 1)))
+            end
+        end
     end
     disallowmissing(Impute.filter(data, dims = :cols)[:, Not([:datetime, :date])])
 end
