@@ -15,11 +15,12 @@ end
 struct TradePair
     asset_1::String
     asset_2::String
-    original_spread::Float64
+    original_lt_spread::Float64
+    original_st_spread::Float64
     epsilon::Float64
 end
 
-function generate_trade_pairs(tickers, st_spreads, lt_spreads, initial_prices)
+function generate_trade_pairs(tickers, st_spreads, lt_spreads, initial_lt_prices, initial_st_prices)
     L_params = calibrate_L.(eachcol(lt_spreads))
     score_L = map(L_params) do (θ, _, σ)
         L_score(θ, σ)
@@ -39,7 +40,8 @@ function generate_trade_pairs(tickers, st_spreads, lt_spreads, initial_prices)
         TradePair(
             tickers[pair[1]],
             tickers[pair[2]],
-            log(initial_prices[pair[1]]) - log(initial_prices[pair[2]]),
+            log(initial_lt_prices[pair[1]]) - log(initial_lt_prices[pair[2]]),
+            log(initial_st_prices[pair[1]]) - log(initial_st_prices[pair[2]]),
             ϵ 
         )
     end
